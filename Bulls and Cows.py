@@ -10,6 +10,7 @@ print("\nFor example, If secret word is 4871 and your guess is 1834, then there 
 play_again = True
 while play_again is True:
     print("\n-------------Begin!-------------")
+    # Number of different 4 digit integers with no digit repeated = 9*9*8*7 = 4536
     ans = int(linecache.getline('random_numbers.txt', random.randrange(0, 4536)))
     # print("Cheat: " + str(ans))
     end = False
