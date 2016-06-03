@@ -1,23 +1,17 @@
 import random
-from itertools import permutations
+import linecache
 print("Welcome to Shail's Bulls and Cows game!")
 print("\nThe objective of the game is to guess a 4-digit secret number, in which all digits are different.")
 print("If your digits are in the right place, then they are bulls")
 print("If your digits are there in the secret number but not in the right place, they are cows.")
 print("\nFor example, If secret word is 4871 and your guess is 1834, then there is 1 bull(8) and 2 cows(1 and 4).")
 
-# result contains all valid 4 digit numbers
-result = [
-    a * 1000 + b * 100 + c * 10 + d * 1
-    for a, b, c, d in permutations(range(10), 4)
-    if a != 0
-]
 
 play_again = True
 while play_again is True:
     print("\n-------------Begin!-------------")
-    ans = result[random.randrange(0, len(result))]
-    print("Cheat: " + str(ans))
+    ans = int(linecache.getline('random_numbers.txt', random.randrange(0, 4536)))
+    # print("Cheat: " + str(ans))
     end = False
     prev_no = []
     bulls = []
@@ -28,9 +22,10 @@ while play_again is True:
     while end is not True:
 
         x = int(input("\nGuess the 4 digit number: "))
-        if x not in result:
-            print("The number should be of 4 digits and all digits should be unique.")
+        if len(str(x)) is not 4:
+            print("The number should be of 4 digits.")
             continue
+
         prev_no.append(x)
         bulls.append(0)
         cows.append(0)
